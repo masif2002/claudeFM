@@ -12,8 +12,8 @@
 set -euo pipefail
 
 SETTINGS="${CLAUDE_SETTINGS:-$HOME/.claude/settings.json}"
-PLAY_CMD='case "$ENABLE_CLAUDE_VIBE_MUSIC" in 1|true|yes|on) nowplaying-cli play || true ;; esac'
-PAUSE_CMD='case "$ENABLE_CLAUDE_VIBE_MUSIC" in 1|true|yes|on) nowplaying-cli pause || true ;; esac'
+PLAY_CMD='case "$ENABLE_CLAUDE_FM" in 1|true|yes|on) nowplaying-cli play || true ;; esac'
+PAUSE_CMD='case "$ENABLE_CLAUDE_FM" in 1|true|yes|on) nowplaying-cli pause || true ;; esac'
 
 c_green() { printf '\033[32m%s\033[0m\n' "$1"; }
 c_red() { printf '\033[31m%s\033[0m\n' "$1" >&2; }

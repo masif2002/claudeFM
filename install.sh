@@ -20,13 +20,13 @@ set -euo pipefail
 SETTINGS="${CLAUDE_SETTINGS:-$HOME/.claude/settings.json}"
 
 # Hook commands are gated: they only act when the Claude session was launched
-# with ENABLE_CLAUDE_VIBE_MUSIC set to a truthy value (1/true/yes/on), e.g.
-#   ENABLE_CLAUDE_VIBE_MUSIC=1 claude
+# with ENABLE_CLAUDE_FM set to a truthy value (1/true/yes/on), e.g.
+#   ENABLE_CLAUDE_FM=1 claude
 # Otherwise the `case` matches nothing and exits 0 — a silent no-op. The
-# $ENABLE_CLAUDE_VIBE_MUSIC reference must stay LITERAL in settings.json so the
+# $ENABLE_CLAUDE_FM reference must stay LITERAL in settings.json so the
 # shell expands it at hook-run time, not now — hence the single quotes.
-PLAY_CMD='case "$ENABLE_CLAUDE_VIBE_MUSIC" in 1|true|yes|on) nowplaying-cli play || true ;; esac'
-PAUSE_CMD='case "$ENABLE_CLAUDE_VIBE_MUSIC" in 1|true|yes|on) nowplaying-cli pause || true ;; esac'
+PLAY_CMD='case "$ENABLE_CLAUDE_FM" in 1|true|yes|on) nowplaying-cli play || true ;; esac'
+PAUSE_CMD='case "$ENABLE_CLAUDE_FM" in 1|true|yes|on) nowplaying-cli pause || true ;; esac'
 
 # event -> command. "play" while Claude works, "pause" when it stops/waits.
 PLAY_EVENTS=(UserPromptSubmit PostToolUse)

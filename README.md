@@ -26,7 +26,7 @@ The hooks are **opt-in per session** via an environment variable. Launch Claude
 with the flag to get the music behaviour:
 
 ```bash
-ENABLE_CLAUDE_VIBE_MUSIC=1 claude
+ENABLE_CLAUDE_FM=1 claude
 ```
 
 A plain `claude` does nothing — the hooks are present but stay silent. Accepted
@@ -35,7 +35,7 @@ truthy values are `1`, `true`, `yes`, `on`.
 Tip — make a shortcut for sessions where you want it:
 
 ```bash
-alias cvibe='ENABLE_CLAUDE_VIBE_MUSIC=1 claude'
+alias claudefm='ENABLE_CLAUDE_FM=1 claude'
 ```
 
 > **Multiple sessions:** because there's one system audio player, only sessions
@@ -64,12 +64,12 @@ lifecycle events. We map them to playback:
 Each hook runs a small gated command:
 
 ```sh
-case "$ENABLE_CLAUDE_VIBE_MUSIC" in 1|true|yes|on) nowplaying-cli play || true ;; esac
+case "$ENABLE_CLAUDE_FM" in 1|true|yes|on) nowplaying-cli play || true ;; esac
 ```
 
 Hooks inherit the environment of the `claude` process they were launched from,
 so the `case` only triggers `nowplaying-cli` when you started that session with
-`ENABLE_CLAUDE_VIBE_MUSIC` set. Otherwise it matches nothing and exits `0` — a
+`ENABLE_CLAUDE_FM` set. Otherwise it matches nothing and exits `0` — a
 silent no-op that never reports a hook failure.
 
 ## Idempotency & safety
